@@ -405,7 +405,7 @@ bool fuji_get_ssid(NetConfig *net_config);
 
 /**
  * @brief Checks if WIFI is enabled or not. Any device errors will return false also.
- * @return enabled status 
+ * @return enabled status
  */
 bool fuji_get_wifi_enabled(void);
 
@@ -639,6 +639,12 @@ bool fuji_qrcode_length(uint8_t output_mode, unsigned long *len);
 
 // Read len bytes of the rendered code into s.
 bool fuji_qrcode_output(char *s, uint16_t len);
+
+// Creates encoded QR code using the specified parameters. Returns the
+// final encoded length, or a negative error code if calls failed or
+// not enough space in buffer.
+int qrcode_create(uint8_t version, qr_ecc_t ecc, bool shorten, qr_output_mode_t mode,
+                  void *input, size_t input_len, void *output, size_t output_max);
 
 ////////////////////////////////////////////////////////////////
 // These are very low level functions and should only be used internally.
